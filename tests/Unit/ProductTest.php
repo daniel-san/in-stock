@@ -8,7 +8,7 @@ use App\Models\Stock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class StockTest extends TestCase
+class ProductTest extends TestCase
 {
     use RefreshDatabase;
     /** @test */
