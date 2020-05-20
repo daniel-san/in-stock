@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Http;
-
 class Stock extends Model
 {
     protected $table = 'stock';
@@ -14,14 +12,15 @@ class Stock extends Model
 
     public function track()
     {
-        if($this->retailer->name === 'Best Buy') {
-            $results = Http::get('http://foo.test')->json();
+        $status = $this->retailer
+                       ->client()
+                       ->checkAvailability($this);
 
-            $this->update([
-                'in_stock' => $results['available'],
-                'price' => $results['price']
-            ]);
-        }
+        $this->update([
+            'in_stock' => $status->available,
+            'price' => $status->price
+        ]);
+
     }
 
     public function retailer()
