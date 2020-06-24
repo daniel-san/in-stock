@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Clients\ClientFactory;
+use Facades\App\Clients\ClientFactory;
 
 class Retailer extends Model
 {
@@ -20,6 +20,6 @@ class Retailer extends Model
 
     public function client()
     {
-        return (new ClientFactory)->make($this);
+        return ClientFactory::make($this);
     }
 }
